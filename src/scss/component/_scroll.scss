@@ -1,0 +1,58 @@
+@use '../abstracts/' as *;
+
+button
+{
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    outline: none;
+    border: none;
+    border-radius: 50%;
+    height: 60px;
+    width: 60px;
+
+    .icon
+    {
+        font-size: 22px;
+        color:$white;
+    }
+}
+
+#scroll-top {
+    position             : fixed;
+    display              : block;
+    width                : 50px;
+    height               : 50px;
+    line-height          : 50px;
+    border-radius        : 4px;
+    text-align           : center;
+    z-index              : 999;
+    right                : 25px;
+    bottom               : 23px;
+    border-radius        : 50%;
+    -webkit-border-radius: 50%;
+    -moz-border-radius   : 50%;
+    -ms-border-radius    : 50%;
+    -o-border-radius     : 50%;
+    cursor               : pointer;
+    overflow             : hidden;
+    background: linear-gradient(264.28deg, #DEC7FF -38.2%, #5C27FE 103.12%);
+
+    @include flex(center ,center);
+
+
+    span {
+        transform: rotate(-180deg);
+        display: block;
+        font-size: 12px;
+    }
+}
+
+
+
+
+
+
+#scroll-top:hover {
+    transform: translateY(-7%);
+}
