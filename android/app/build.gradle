@@ -52,7 +52,7 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-core:3.5.1"
 }
 
-apply from: '../capacitor.build.gradle'
+// apply from: '../capacitor.build.gradle'
 
 try {
     def servicesJSON = file('google-services.json')
