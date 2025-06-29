@@ -57,14 +57,3 @@
  ![](https://www.animatedimages.org/data/media/562/animated-line-image-0381.gif)
 
 <div align=left> 
-  
-## To Run it on Docker :-
-
-Use  this command to run docker image in your system
-
-```bash
-docker pull shinjan02/samarth:go
-```
-
- <p align="center"><i> Thank you for visiting !</i></p>
-
