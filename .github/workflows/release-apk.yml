@@ -41,6 +41,9 @@ jobs:
 
     - name: Make gradlew executable
       run: chmod +x android/gradlew
+    
+    - name: Debug gradlew
+      run: ls -la android/gradlew
 
     - name: Build Signed APK
       working-directory: android
