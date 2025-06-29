@@ -1,3 +1,5 @@
+apply plugin: 'com.android.application'
+
 android {
     namespace "com.samarthtmsl.com"
     compileSdk rootProject.ext.compileSdkVersion
