@@ -1,0 +1,65 @@
+name: Build & Release APKs
+
+on:
+  workflow_dispatch:  # Manually triggered
+
+jobs:
+  build:
+    name: Build Debug & Release APKs
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '20'
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Build React app
+      run: npm run build
+
+    - name: Install Capacitor CLI
+      run: npm install @capacitor/cli
+
+    - name: Sync Capacitor Android
+      run: npx cap sync android
+
+    - name: Set up Java
+      uses: actions/setup-java@v3
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    - name: Make gradlew executable
+      run: chmod +x gradlew
+      working-directory: android
+
+    - name: Decode keystore for release signing
+      run: |
+        echo "${{ secrets.KEYSTORE_BASE64 }}" | base64 -d > android/app/release.keystore
+
+    - name: Build Debug and Release APKs
+      run: |
+        ./gradlew assembleDebug
+        ./gradlew assembleRelease
+      working-directory: android
+      env:
+        KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+        KEY_ALIAS: ${{ secrets.KEY_ALIAS }}
+        KEY_PASSWORD: ${{ secrets.KEY_PASSWORD }}
+
+    - name: Upload Both APKs to GitHub Release
+      uses: softprops/action-gh-release@v2
+      with:
+        tag_name: v1.0.${{ github.run_number }}
+        name: Android APKs v1.0.${{ github.run_number }}
+        files: |
+          android/app/build/outputs/apk/debug/app-debug.apk
+          android/app/build/outputs/apk/release/app-release.apk
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
