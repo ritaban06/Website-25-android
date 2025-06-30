@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Samarth TMSL</string>
+    <string name="title_activity_main">Samarth TMSL</string>
+    <string name="package_name">com.samarthtmsl.com</string>
+    <string name="custom_url_scheme">com.samarthtmsl.com</string>
+</resources>
